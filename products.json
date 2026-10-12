@@ -1,0 +1,34 @@
+[
+  {
+    "id": "reality-fracture-collector",
+    "name": "Reality Fracture Collector Boosters",
+    "active": true,
+    "search_term": "Magic The Gathering Reality Fracture Collector Booster",
+    "required_terms": ["Magic", "Reality Fracture", "Collector", "Booster"],
+    "exclude_terms": [],
+    "alerts": ["new_listing"],
+    "currency": "USD",
+    "stores": {
+      "amazon": {"enabled": true},
+      "walmart": {"enabled": false},
+      "target": {"enabled": false},
+      "best_buy": {"enabled": false}
+    }
+  },
+  {
+    "id": "secrets-of-strixhaven-collector",
+    "name": "Secrets of Strixhaven Collector Boosters",
+    "active": true,
+    "search_term": "Magic The Gathering Secrets of Strixhaven Collector Booster",
+    "required_terms": ["Magic", "Secrets of Strixhaven", "Collector", "Booster"],
+    "exclude_terms": [],
+    "alerts": ["new_listing"],
+    "currency": "USD",
+    "stores": {
+      "amazon": {"enabled": true},
+      "walmart": {"enabled": false},
+      "target": {"enabled": false},
+      "best_buy": {"enabled": false}
+    }
+  }
+]
