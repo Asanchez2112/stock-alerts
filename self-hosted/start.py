@@ -8,9 +8,13 @@ import sys
 
 def environment(source):
     env = dict(source)
-    password = env.pop("MONITOR_PASSWORD", "")
+    if "MONITOR_PASSWORD" not in env:
+        raise ValueError("MONITOR_PASSWORD is MISSING from this running container. Check this service's variables in the deployed Railway environment and apply pending changes.")
+    password = env.pop("MONITOR_PASSWORD")
+    if not password:
+        raise ValueError("MONITOR_PASSWORD is present but EMPTY. Enter its value directly in this service's Variables tab and deploy the change.")
     if len(password) < 16:
-        raise ValueError("Set MONITOR_PASSWORD in Railway Variables to a unique password of at least 16 characters.")
+        raise ValueError("MONITOR_PASSWORD is present but SHORTER THAN 16 characters. Replace its value and deploy the change.")
     if env.get("RAILWAY_VOLUME_MOUNT_PATH") != "/datastore":
         raise ValueError("Attach a Railway volume with mount path /datastore.")
     salt = os.urandom(32)
@@ -26,6 +30,7 @@ def environment(source):
 
 
 def main():
+    print("Monitor startup diagnostic v2 (password values are never logged)", file=sys.stderr)
     try:
         env = environment(os.environ)
         if Path("/datastore/removepassword.lock").exists():
